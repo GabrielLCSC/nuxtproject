@@ -29,11 +29,9 @@ const { data, pending, error } = await useAsyncData("players", async () => {
                     <a :href="/players/${player.slug}">{{ player.name }}</a>
                 </div> -->
         <div v-for="player in data" :key="player.slug">
-          <a :href="`/players/${player.slug}`">{{ player.name }}</a>
-          <p>{{ player.age }}</p>
-          <div>
-            <!--             <img :src="{{ player.image.url }}" alt="{{ player.image.url }}" />
- -->
+          <h3 :href="`/players/${player.slug}`">{{ player.name }}</h3>
+          <div v-for="competitions in player" :key="competitions.name">
+            <p>Gagnant de {{ competitions.name }}</p>
           </div>
         </div>
       </div>
@@ -41,4 +39,45 @@ const { data, pending, error } = await useAsyncData("players", async () => {
   </div>
 </template>
 
-<style scoped></style>
+<style>
+/* font */
+@font-face {
+  font-family: "wix-madefor-text";
+  font-weight: 400;
+  src: url("/fonts/WixMadeforText-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "wix-madefor-text";
+  font-weight: 500;
+  src: url("/fonts/WixMadeforText-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "wix-madefor-text";
+  font-weight: 600;
+  src: url("/fonts/WixMadeforText-SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "wix-madefor-text";
+  font-weight: 700;
+  src: url("/fonts/WixMadeforText-Bold.woff2") format("woff2");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "wix-madefor-text", sans-serif;
+}
+
+a {
+  color: #000000;
+  text-decoration: none;
+  transition: ease-in-out 0.3s;
+  &:hover {
+    color: #4c4e97;
+  }
+}
+</style>
