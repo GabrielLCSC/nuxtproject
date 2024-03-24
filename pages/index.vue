@@ -30,9 +30,7 @@ const { data, pending, error } = await useAsyncData("players", async () => {
                 </div> -->
         <div v-for="player in data" :key="player.slug">
           <h3 :href="`/players/${player.slug}`">{{ player.name }}</h3>
-          <div v-for="competitions in player" :key="competitions.name">
-            <p>Gagnant de {{ competitions.name }}</p>
-          </div>
+          <div v-for="competitions in player" :key="competitions.name"></div>
         </div>
       </div>
     </template>
